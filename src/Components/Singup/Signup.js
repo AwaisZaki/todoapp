@@ -35,17 +35,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Singup = (props) => {
-  console.log(props);
   const classes = useStyles();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(e.target.first_Name.value == ''){
-      console.log("Empty")
-    }
-    console.log(e.target.first_Name);
     const dto = {
-    
       first_name: e.target.first_Name.value,
       last_name: e.target.last_Name.value,
       email: e.target.email.value,
@@ -56,9 +50,14 @@ const Singup = (props) => {
         "http://localhost:3001/api/register",
         dto
       );
-      if (response) {
+      // console.log()
+      //Error show
+      if (response.data.success) {
         props.history.push("/todo");
-      }
+      } 
+      // else if(!response.data.success){
+      //   console.log("ERROR")
+      // }
     } catch (error) {
       console.log(error);
     }
