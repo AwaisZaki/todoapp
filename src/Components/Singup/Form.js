@@ -17,7 +17,7 @@ export default ({ submitHandler, classes }) => {
         fullWidth
         id="first_Name"
         label="First Name"
-        name="FirstName"
+        name="firsName"
         autoComplete="firstName"
         autoFocus
       />

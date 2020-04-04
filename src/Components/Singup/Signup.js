@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core/";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import axios from "axios";
-import Form from './Form';
+import Form from "./Form";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,16 +35,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Singup = (props) => {
-  console.log(props)
+  console.log(props);
   const classes = useStyles();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(e.target.first_Name.value == ''){
+      console.log("Empty")
+    }
+    console.log(e.target.first_Name);
     const dto = {
-      first_name: e.target.value,
-      last_name: e.target.value,
-      email: e.target.value,
-      password: e.target.value,
+    
+      first_name: e.target.first_Name.value,
+      last_name: e.target.last_Name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
     };
     try {
       const response = await axios.post(
@@ -52,7 +57,7 @@ const Singup = (props) => {
         dto
       );
       if (response) {
-          props.history.push('/todo');
+        props.history.push("/todo");
       }
     } catch (error) {
       console.log(error);
@@ -68,7 +73,7 @@ const Singup = (props) => {
         <Typography component="h1" variant="h5">
           Sing Up
         </Typography>
-        <Form submitHandler={handleSubmit} classes={classes}/>
+        <Form submitHandler={handleSubmit} classes={classes} />
       </div>
     </Container>
   );
